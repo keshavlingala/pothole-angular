@@ -6,6 +6,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { ApplyComponent } from './modules/user/apply/apply.component';
 
 const routes: Routes = [
   {

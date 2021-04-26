@@ -1,1 +1,22 @@
-<p>register works!</p>
+<div class="d-flex justify-content-center">
+  <div [formGroup]="form" class="d-flex flex-column mt-5 align-items-center mat-elevation-z5 p-5 ">
+    <h1>Register</h1>
+    <mat-error *ngIf="error">{{error}}</mat-error>
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input name="username" formControlName="username" matInput type="email" placeholder="Username">
+      <mat-error>Username is Required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input name="password" formControlName="password" matInput type="password" placeholder="password">
+      <mat-error>Password is Required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input name="email" formControlName="email" matInput type="email" placeholder="example@gmail.com">
+      <mat-error>Email is Required</mat-error>
+    </mat-form-field>
+    <button (click)="submit()" mat-raised-button color="primary">Login</button>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 <mat-toolbar color="accent">
-  Pothole Tracking
+  <span class="pointer" routerLink="/">Pothole Tracking</span>
   <span class="flex-fill"></span>
   <button (click)="auth.logout()" *ngIf="auth.isLoggedIn" mat-button>Sign out</button>
   <button routerLink="/login" *ngIf="!auth.isLoggedIn" mat-button>Sign In</button>

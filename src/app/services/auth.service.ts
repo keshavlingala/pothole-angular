@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LOGIN_URL, WHO_AM_I } from '../models/contants';
+import { LOGIN_URL, REGISTER_URL, WHO_AM_I } from '../models/contants';
 import { Observable, of } from 'rxjs';
 import { AuthResponse, User } from '../models/models';
 import { map } from 'rxjs/operators';
@@ -86,6 +86,18 @@ export class AuthService {
   whoami(): Observable<User> {
     return this.http.get<User>(WHO_AM_I, {
       headers: this.getHeaders(),
+    });
+  }
+
+  register(
+    username: string,
+    password: string,
+    email: string
+  ): Observable<User> {
+    return this.http.post<User>(REGISTER_URL, {
+      username,
+      password,
+      email,
     });
   }
 }

@@ -1,1 +1,15 @@
-<p>User dashboard works!</p>
+<mat-drawer-container class="side-nav" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <button mat-button>My Complaints</button>
+  </mat-drawer>
+  <div class="content">
+    <mat-toolbar>
+      <button (click)="drawer.toggle()"  mat-icon-button>
+        <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
+        <mat-icon *ngIf="drawer.opened">close</mat-icon>
+      </button>
+      User Dashboard
+    </mat-toolbar>
+  </div>
+
+</mat-drawer-container>
