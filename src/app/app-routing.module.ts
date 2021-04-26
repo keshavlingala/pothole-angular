@@ -9,6 +9,14 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 
 const routes: Routes = [
   {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
     path: '',
     canLoad: [UserGuard],
     loadChildren: () =>
@@ -27,14 +35,6 @@ const routes: Routes = [
     canLoad: [UserGuard, ContractorGuard, AdminGuard],
     loadChildren: () =>
       import('./modules/admin/admin.module').then((m) => m.AdminModule),
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
   },
   {
     path: '**',
