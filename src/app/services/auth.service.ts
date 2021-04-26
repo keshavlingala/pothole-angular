@@ -1,20 +1,58 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LOGIN_URL, WHO_AM_I } from '../models/contants';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AuthResponse, User } from '../models/models';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
-
   private _token = '';
+  private _user: User | null = null;
 
-  get token(): boolean {
+  constructor(private http: HttpClient, private router: Router) {
+    this._token = localStorage.getItem('token') || '';
+    if (this._token) {
+      this.getUser().subscribe();
+    }
+  }
+
+  get isLoggedIn(): boolean {
     return this._token !== '';
+  }
+
+  isContractor(): Observable<boolean> {
+    return this.getUser().pipe(
+      map((user) => {
+        return !!user.authorities.find((a) => a.authority === 'CONTRACTOR')
+          ?.authority;
+      })
+    );
+  }
+
+  isAdmin(): Observable<boolean> {
+    return this.getUser().pipe(
+      map((user) => {
+        return !!user.authorities.find((a) => a.authority === 'ADMIN')
+          ?.authority;
+      })
+    );
+  }
+
+  getUser(): Observable<User> {
+    if (this._user) {
+      of(this._user);
+    }
+    return this.whoami().pipe(
+      map((user) => {
+        this._user = user;
+        console.log(this._user);
+        return user;
+      })
+    );
   }
 
   getHeaders(): any {
@@ -32,9 +70,17 @@ export class AuthService {
       .pipe(
         map((res) => {
           this._token = res.jwt;
+          localStorage.setItem('token', res.jwt);
           return res;
         })
       );
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this._token = '';
+    this._user = null;
+    this.router.navigateByUrl('/login');
   }
 
   whoami(): Observable<User> {
