@@ -16,7 +16,12 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {
     this._token = localStorage.getItem('token') || '';
     if (this._token) {
-      this.getUser().subscribe();
+      this.getUser().subscribe(
+        (res) => {},
+        (error) => {
+          this.logout();
+        }
+      );
     }
   }
 

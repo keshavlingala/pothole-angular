@@ -1,15 +1,26 @@
-<mat-drawer-container class="side-nav" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <button mat-button>My Complaints</button>
+<mat-drawer-container class="side-nav-container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <div class="profile">
+      <img width="200" src="assets/profile.png" alt="Profile">
+      <h2 *ngIf="user">
+        {{user.username}}
+      </h2>
+      <span class="mb-3" *ngIf="user">{{user.email}}</span>
+      <button routerLinkActive="active" routerLink="/upload" color="primary" class="mt-2 w-100" mat-flat-button>Upload a Pothole</button>
+      <button routerLinkActive="active" routerLink="my" color="primary" class="mt-2 w-100" mat-flat-button>My Complaints</button>
+    </div>
   </mat-drawer>
-  <div class="content">
+  <div class="side-nav-content">
     <mat-toolbar>
-      <button (click)="drawer.toggle()"  mat-icon-button>
+      <button (click)="drawer.toggle()" mat-icon-button>
         <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
         <mat-icon *ngIf="drawer.opened">close</mat-icon>
       </button>
-      User Dashboard
+      <mat-icon>home</mat-icon>
+      <button mat-button routerLink="/">
+        User Dashboard</button>
     </mat-toolbar>
+    <router-outlet></router-outlet>
   </div>
 
 </mat-drawer-container>
