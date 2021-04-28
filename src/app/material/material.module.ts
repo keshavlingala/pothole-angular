@@ -19,6 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const modules = [
   [
@@ -43,6 +44,7 @@ const modules = [
     MatSidenavModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    MatDialogModule,
   ],
 ];
 

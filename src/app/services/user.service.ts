@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-import { PotholeRecord } from '../models/models';
+import { PotholeRecord, User } from '../models/models';
 import { HttpClient } from '@angular/common/http';
-import { MY_RECORDS, POTHOLE_UPLOAD } from '../models/contants';
+import {
+  APPLY_CONTRACTOR,
+  MY_RECORDS,
+  POTHOLE_UPLOAD,
+} from '../models/contants';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -27,5 +31,15 @@ export class UserService {
     return this.http.get<PotholeRecord[]>(MY_RECORDS, {
       headers: this.auth.getHeaders(),
     });
+  }
+
+  applyContractor(licence: string): Observable<User> {
+    return this.http.post<User>(
+      APPLY_CONTRACTOR,
+      { licence },
+      {
+        headers: this.auth.getHeaders(),
+      }
+    );
   }
 }

@@ -1,1 +1,13 @@
-<p>apply works!</p>
+<div class="d-flex flex-column align-items-center">
+  <h1>Contractor Application</h1>
+  <div [formGroup]="form" class="d-flex flex-column mat-elevation-z3 p-3">
+    <span class="text-warning">
+      The Licence number will be validated by <br> the admin,this process will take around 7 days
+    </span>
+    <mat-form-field appearance="outline">
+      <mat-label>Licence</mat-label>
+      <input style="text-transform: uppercase" formControlName="licence" matInput type="text">
+    </mat-form-field>
+    <button [disabled]="form.invalid" (click)="apply()" color="primary" mat-raised-button>Apply</button>
+  </div>
+</div>
