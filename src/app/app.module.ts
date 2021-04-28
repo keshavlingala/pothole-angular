@@ -12,14 +12,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, NotfoundComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    NotfoundComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

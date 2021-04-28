@@ -17,7 +17,8 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const modules = [
   [
@@ -40,6 +41,8 @@ const modules = [
     MatRippleModule,
     MatGridListModule,
     MatSidenavModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
   ],
 ];
 

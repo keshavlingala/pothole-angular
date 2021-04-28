@@ -1,1 +1,13 @@
-<p>myrecords works!</p>
+<div class="container">
+  <mat-list>
+    <div mat-subheader>My Records</div>
+    <mat-list-item *ngFor="let record of records">
+      <mat-icon mat-list-icon>article</mat-icon>
+      <div *ngIf="record.cluster" mat-line>
+        Status: {{record.cluster.status}}
+      </div>
+      <a target="_blank" href="https://www.google.com/maps/place/{{record.lat}},{{record.lng}}/,17z">Show</a>
+      <div mat-line> {{record.description}}, {{record.zipcode}}</div>
+    </mat-list-item>
+  </mat-list>
+</div>

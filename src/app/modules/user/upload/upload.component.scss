@@ -1,0 +1,46 @@
+.file-upload {
+  width: 100%;
+  cursor: pointer;
+  border-style: dotted;
+  border-width: 2px;
+  border-color: #9e9e9e;
+  position: relative;
+  height: 50px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  :before{
+    content: 'Click or Drag & Drop ';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  //input[type="file"] {
+  //  //opacity: 0;
+  //  position: absolute;
+  //  width: 100%;
+  //  height: 100%;
+  //}
+
+  input[type="file"]::file-selector-button {
+    opacity: 0;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 10px;
+    background-color: red;
+    border: none;
+    outline: none;
+  }
+}
+
+mat-form-field{
+  width: 100%;
+}
+

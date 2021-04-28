@@ -39,6 +39,7 @@ const routes: Routes = [
     ApplyComponent,
     UploadComponent,
     HomeComponent,
+    MyrecordsComponent,
   ],
   imports: [CommonModule, MaterialModule, RouterModule.forChild(routes)],
 })
