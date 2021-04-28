@@ -20,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 const modules = [
   [
@@ -45,6 +46,7 @@ const modules = [
     ReactiveFormsModule,
     MatSnackBarModule,
     MatDialogModule,
+    ClipboardModule,
   ],
 ];
 

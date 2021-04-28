@@ -58,7 +58,6 @@ export class AuthService {
     return this.whoami().pipe(
       map((user) => {
         this._user = user;
-        console.log(this._user);
         return user;
       })
     );

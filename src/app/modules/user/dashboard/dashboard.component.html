@@ -1,13 +1,23 @@
 <mat-drawer-container class="side-nav-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
+  <mat-drawer [opened]="isSmall()" #drawer class="sidenav" mode="side">
+    <mat-chip-list>
+      <mat-chip routerLink="/">User</mat-chip>
+      <mat-chip *ngIf="hasAuthority('CONTRACTOR')" routerLink="/contractor" selected color="primary">Contractor
+      </mat-chip>
+      <mat-chip *ngIf="hasAuthority('ADMIN')" routerLink="/admin" selected color="accent">Admin</mat-chip>
+    </mat-chip-list>
     <div class="profile">
       <img width="200" src="assets/profile.png" alt="Profile">
       <h2 *ngIf="user">
         {{user.username}}
       </h2>
       <span class="mb-3" *ngIf="user">{{user.email}}</span>
-      <button routerLinkActive="active" routerLink="/upload" color="primary" class="mt-2 w-100" mat-flat-button>Upload a Pothole</button>
-      <button routerLinkActive="active" routerLink="my" color="primary" class="mt-2 w-100" mat-flat-button>My Complaints</button>
+      <button routerLinkActive="active" routerLink="/upload" color="primary" class="mt-2 w-100" mat-flat-button>Upload a
+        Pothole
+      </button>
+      <button routerLinkActive="active" routerLink="my" color="primary" class="mt-2 w-100" mat-flat-button>My
+        Complaints
+      </button>
     </div>
   </mat-drawer>
   <div class="side-nav-content w-100">
@@ -18,7 +28,8 @@
       </button>
       <mat-icon>home</mat-icon>
       <button mat-button routerLink="/">
-        User Dashboard</button>
+        User Dashboard
+      </button>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </div>

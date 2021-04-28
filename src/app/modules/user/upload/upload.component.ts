@@ -43,6 +43,9 @@ export class UploadComponent implements OnInit {
       (res) => {
         this.form.reset();
         console.log('Upload Success');
+        this.snack.open('Pothole Reported Successfully!', 'Dismiss', {
+          duration: 1000,
+        });
       },
       (error) => {
         console.log('Errror', error);

@@ -1,0 +1,23 @@
+.side-nav-container {
+  height: 100vh;
+}
+
+.side-nav-content {
+  max-width: 100%;
+}
+
+.sidenav {
+  padding: 20px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.active {
+  background-color: white;
+  color: #4051b5;
+  border: 2px solid #4051b5;
+}

@@ -8,7 +8,6 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  showFiller = false;
   user: User | null = null;
 
   constructor(private auth: AuthService) {
@@ -16,4 +15,12 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  hasAuthority(role: 'CONTRACTOR' | 'ADMIN'): boolean {
+    return !!this.user?.authorities?.find((a) => a.authority === role);
+  }
+
+  isSmall(): boolean {
+    return !(window.innerWidth < 600);
+  }
 }
