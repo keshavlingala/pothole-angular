@@ -31,7 +31,7 @@ export class ApplyComponent implements OnInit {
 
   async apply(): Promise<any> {
     const res = await this.dialog
-      .open(ConfirmationDialog, {
+      .open(ConfirmationDialogComponent, {
         width: '300px',
         data: this.form.get('licence')?.value,
       })
@@ -66,9 +66,9 @@ export class ApplyComponent implements OnInit {
       </button>
     </div>`,
 })
-export class ConfirmationDialog {
+export class ConfirmationDialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<ConfirmationDialog>,
+    public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string
   ) {}
 

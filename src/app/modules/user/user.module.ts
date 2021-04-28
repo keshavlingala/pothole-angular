@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ApplyComponent, ConfirmationDialog } from './apply/apply.component';
+import {
+  ApplyComponent,
+  ConfirmationDialogComponent,
+} from './apply/apply.component';
 import { MaterialModule } from '../../material/material.module';
 import { MyrecordsComponent } from './myrecords/myrecords.component';
 import { UploadComponent } from './upload/upload.component';
@@ -40,7 +43,7 @@ const routes: Routes = [
     UploadComponent,
     HomeComponent,
     MyrecordsComponent,
-    ConfirmationDialog,
+    ConfirmationDialogComponent,
   ],
   imports: [CommonModule, MaterialModule, RouterModule.forChild(routes)],
 })
