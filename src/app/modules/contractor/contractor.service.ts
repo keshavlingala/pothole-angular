@@ -6,6 +6,7 @@ import { Bid, Cluster } from '../../models/models';
 import {
   APPLY_BID,
   CHECK_CONTRACT,
+  My_BIDS,
   OPEN_CONTRACTS,
 } from '../../models/contants';
 import { map } from 'rxjs/operators';
@@ -54,6 +55,12 @@ export class ContractorService {
 
   checkBid(zipcode: string | null): Observable<Bid | undefined> {
     return this.http.get<Bid | undefined>(CHECK_CONTRACT + zipcode, {
+      headers: this.auth.getHeaders(),
+    });
+  }
+
+  getMyBids(): Observable<Bid[]> {
+    return this.http.get<Bid[]>(My_BIDS, {
       headers: this.auth.getHeaders(),
     });
   }

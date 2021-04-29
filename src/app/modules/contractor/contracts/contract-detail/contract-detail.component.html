@@ -39,10 +39,10 @@
   </div>
 </div>
 <ng-template #bidStatus>
-  <div *ngIf="$bid |async as bid">
+  <div class="d-flex flex-column" *ngIf="$bid |async as bid">
     <h2>Already Applied</h2>
-    Status: {{bid.status}} <br>
-    Bid Amount: {{bid.bidAmount}}
-    <button routerLink="../../bids" mat-stroked-button>Go to My Bids</button>
+    <span>Status: {{bid.status}}</span>
+    <span>Bid Amount: {{bid.bidAmount}}</span>
+    <button class="mt-1" routerLink="../../bids" mat-stroked-button>Go to My Bids</button>
   </div>
 </ng-template>

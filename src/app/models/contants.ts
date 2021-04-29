@@ -15,3 +15,4 @@ export const APPROVE_CONTRACTOR = BASE_URL + 'admin/contractor/approve/';
 export const OPEN_CONTRACTS = BASE_URL + 'contractor/clusters';
 export const APPLY_BID = BASE_URL + 'contractor/bid/apply/';
 export const CHECK_CONTRACT = BASE_URL + 'contractor/bid/';
+export const My_BIDS = BASE_URL + 'contractor/bids';

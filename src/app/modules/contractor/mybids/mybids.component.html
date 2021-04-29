@@ -1,1 +1,10 @@
-<p>mybids works!</p>
+<div class="d-flex container">
+  <mat-list class="w-100">
+    <mat-list-item  routerLink="../contracts/{{bid.clusterId}}" *ngFor="let bid of $bids | async">
+      <mat-icon mat-list-icon>sell</mat-icon>
+      <div matLine>Area ZipCode: {{bid.clusterId}}</div>
+      <div matLine>Amount: ₹ {{bid.bidAmount}}</div>
+      <mat-chip selected color="{{getColor(bid.status)}}">{{bid.status}}</mat-chip>
+    </mat-list-item>
+  </mat-list>
+</div>

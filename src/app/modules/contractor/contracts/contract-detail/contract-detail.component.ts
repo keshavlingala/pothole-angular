@@ -58,6 +58,7 @@ export class ContractDetailComponent implements OnInit, OnDestroy {
         this.snack.open('Bid Application Sent Successfully!', 'Dismiss', {
           duration: 1000,
         });
+        this.bidForm.reset();
       });
   }
 }
