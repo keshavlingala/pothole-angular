@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const modules = [
   [
@@ -47,6 +48,7 @@ const modules = [
     MatSnackBarModule,
     MatDialogModule,
     ClipboardModule,
+    MatTooltipModule,
   ],
 ];
 

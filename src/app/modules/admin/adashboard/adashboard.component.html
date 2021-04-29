@@ -1,7 +1,7 @@
 <mat-drawer-container class="side-nav-container" autosize>
   <mat-drawer [opened]="isSmall()" #drawer class="sidenav" mode="side">
     <div class="profile">
-      <mat-chip-list>
+      <mat-chip-list class="w-100">
         <mat-chip routerLink="/">User</mat-chip>
         <mat-chip *ngIf="hasAuthority('CONTRACTOR')" routerLink="/contractor" selected color="primary">Contractor
         </mat-chip>

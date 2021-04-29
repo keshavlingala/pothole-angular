@@ -1,0 +1,48 @@
+<div class="p-3 w-100" *ngIf="$cluster | async as cluster">
+  Zipcode: {{cluster.zipcode}} <br>
+  Status: {{cluster.status}}
+  <h4>List of Pothole Reports in this area</h4>
+  <div class="gallery">
+    <div *ngFor="let record of cluster.records" class="gallery-card">
+      <div class="my-card mat-elevation-z4">
+        <img [src]="record.img" alt="Pothole Image">
+        <div class="d-flex flex-column align-items-center justify-content-center">
+          <h3 class="mt-1">{{record.description}}</h3>
+          <button (click)="copyCoordinates()" [cdkCopyToClipboard]="record.lat+','+record.lng"
+                  matTooltipPosition="above"
+                  matTooltip="Copy Coordinates" mat-stroked-button>
+            <mat-icon>location_on</mat-icon>
+            Location
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!($bid|async) else bidStatus" [formGroup]="bidForm"
+       class="d-flex flex-column justify-content-center w-100">
+    <h1>Bid on this Contract</h1>
+    <mat-form-field class="m-1" appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input style="text-align: right" formControlName="bidAmount" matInput type="number">
+      <span matPrefix>₹ &nbsp;</span>
+      <span matSuffix>.00</span>
+      <mat-error>This Field is Required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="m-1" appearance="outline">
+      <mat-label>Description</mat-label>
+      <input formControlName="description" matInput type="text">
+      <mat-error>This Field is Required</mat-error>
+    </mat-form-field>
+    <button (click)="submitBid(cluster.zipcode)" [disabled]="bidForm.invalid" class="w-100" mat-raised-button
+            color="primary">Submit Bid Request
+    </button>
+  </div>
+</div>
+<ng-template #bidStatus>
+  <div *ngIf="$bid |async as bid">
+    <h2>Already Applied</h2>
+    Status: {{bid.status}} <br>
+    Bid Amount: {{bid.bidAmount}}
+    <button routerLink="../../bids" mat-stroked-button>Go to My Bids</button>
+  </div>
+</ng-template>

@@ -29,11 +29,21 @@ export interface PotholeRecord {
   recordId?: string;
   userId?: string;
   cluster?: Cluster;
+  img?: string;
 }
 
 export interface Cluster {
   contractorId: string;
-  records: any[];
+  records: PotholeRecord[];
   status: string;
   zipcode: string;
+}
+
+export interface Bid {
+  bidId?: string;
+  contractorId: string;
+  clusterId: string;
+  bidAmount: string;
+  description: string;
+  status: string;
 }

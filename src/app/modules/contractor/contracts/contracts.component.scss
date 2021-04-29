@@ -1,0 +1,18 @@
+.contract-detail {
+  max-width: 50%;
+}
+.clusters{
+  width: 50%;
+  max-width: 50%;
+  min-width: 50%;
+}
+@media only screen and (max-width: 600px) {
+  .contract-detail{
+    width: 100%;
+    max-width: 100%;
+  }
+  .clusters{
+    width: 100%;
+    min-width: 100%;
+  }
+}

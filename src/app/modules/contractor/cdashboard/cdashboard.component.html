@@ -1,1 +1,37 @@
-<p>cdashboard works!</p>
+<mat-drawer-container class="side-nav-container" autosize>
+  <mat-drawer [opened]="isSmall()" #drawer class="sidenav" mode="side">
+    <div class="profile">
+      <mat-chip-list class="w-100">
+        <mat-chip routerLink="/">User</mat-chip>
+        <mat-chip *ngIf="hasAuthority('CONTRACTOR')" routerLink="/contractor" selected color="primary">Contractor
+        </mat-chip>
+        <mat-chip *ngIf="hasAuthority('ADMIN')" routerLink="/admin" selected color="accent">Admin</mat-chip>
+      </mat-chip-list>
+      <img width="200" src="assets/profile.png" alt="Profile">
+      <h2 *ngIf="user">
+        {{user.username}}
+      </h2>
+      <span class="mb-3" *ngIf="user">{{user.email}}</span>
+      <button routerLinkActive="active" routerLink="contracts" color="primary" class="mt-2 w-100" mat-flat-button>
+        Open Contracts
+      </button>
+      <button routerLinkActive="active" routerLink="bids" color="primary" class="mt-2 w-100" mat-flat-button>
+        My Bids
+      </button>
+    </div>
+  </mat-drawer>
+  <div class="side-nav-content w-100">
+    <mat-toolbar color="primary">
+      <button (click)="drawer.toggle()" mat-icon-button>
+        <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
+        <mat-icon *ngIf="drawer.opened">close</mat-icon>
+      </button>
+      <mat-icon>home</mat-icon>
+      <button mat-button routerLink="/contractor">
+        Contractor Dashboard
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

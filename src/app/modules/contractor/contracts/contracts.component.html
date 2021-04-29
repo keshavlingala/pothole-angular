@@ -1,0 +1,14 @@
+<div class="d-flex flex-column flex-sm-row ">
+  <div class="p-3 clusters">
+    <mat-list>
+      <mat-list-item [routerLink]="cluster.zipcode" mat-ripple class="pointer" *ngFor="let cluster of clusters">
+        <mat-icon [matBadge]="cluster.records.length" mat-list-icon>apps</mat-icon>
+        <div matLine>{{cluster.zipcode}}</div>
+        <div matLine>{{cluster.records.length}} records in this area</div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="contract-detail">
+    <router-outlet></router-outlet>
+  </div>
+</div>
