@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { LOGIN_URL, REGISTER_URL, WHO_AM_I } from '../models/contants';
 import { Observable, of } from 'rxjs';
 import { AuthResponse, User } from '../models/models';
-import { map } from 'rxjs/operators';
+import { map, mapTo, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
