@@ -9,14 +9,21 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input name="password" formControlName="password" matInput type="password" placeholder="password">
+      <input name="password" formControlName="password" matInput type="password" placeholder="Password">
       <mat-error>Password is Required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Confirm Password</mat-label>
+      <input name="confirm_password" formControlName="confirm_password" matInput type="password" placeholder="Confirm Password">
+      <mat-error *ngIf="form.controls['confirm_password']?.errors?.required" >Confirm Password is Required</mat-error>
+      <mat-error *ngIf="form.controls['confirm_password']?.errors?.mustMatch" >Passwords do not match</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
       <input name="email" formControlName="email" matInput type="email" placeholder="example@gmail.com">
-      <mat-error>Email is Required</mat-error>
+      <mat-error *ngIf="form.controls['email']?.errors?.required" >Email is Required</mat-error>
+      <mat-error *ngIf="form.controls['email']?.errors?.email" >Not a valid Email ID</mat-error>
     </mat-form-field>
-    <button (click)="submit()" mat-raised-button color="primary">Login</button>
+    <button (click)="submit()" mat-raised-button color="primary">Register</button>
   </div>
 </div>
