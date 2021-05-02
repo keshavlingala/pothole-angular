@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="records.length>0 else noNew">
   <mat-list>
     <div mat-subheader>My Records</div>
     <mat-list-item *ngFor="let record of records">
@@ -11,3 +11,8 @@
     </mat-list-item>
   </mat-list>
 </div>
+<ng-template #noNew>
+  <div class="mt-3 d-flex justify-content-center">
+    <h1>No records found</h1>
+  </div>
+</ng-template>
