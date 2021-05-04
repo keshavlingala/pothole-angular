@@ -9,11 +9,19 @@ import { Cluster } from '../../../models/models';
   styleUrls: ['./my-contracts.component.scss'],
 })
 export class MyContractsComponent implements OnInit {
-  $contracts: Observable<Cluster>;
+  $contracts: Observable<Cluster[]>;
+  status = 'ASSIGNED';
 
   constructor(private contractorService: ContractorService) {
     this.$contracts = contractorService.getMyContracts();
   }
 
   ngOnInit(): void {}
+
+  async statusUpdate(contract: Cluster, val: string): Promise<void> {
+    const res = await this.contractorService
+      .updateStatus(contract, val)
+      .toPromise();
+    console.log(res);
+  }
 }

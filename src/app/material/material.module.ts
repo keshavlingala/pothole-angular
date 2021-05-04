@@ -23,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioButton, MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 
 const modules = [
   [
@@ -51,6 +52,7 @@ const modules = [
     ClipboardModule,
     MatTooltipModule,
     MatRadioModule,
+    MatSelectModule,
   ],
 ];
 

@@ -9,6 +9,7 @@ import {
   MY_BIDS,
   MY_CONTRACTS,
   OPEN_CONTRACTS,
+  UPDATE_STATUS,
 } from '../../models/contants';
 import { map } from 'rxjs/operators';
 
@@ -39,8 +40,8 @@ export class ContractorService {
     );
   }
 
-  getMyContracts(): Observable<Cluster> {
-    return this.http.get<Cluster>(MY_CONTRACTS, {
+  getMyContracts(): Observable<Cluster[]> {
+    return this.http.get<Cluster[]>(MY_CONTRACTS, {
       headers: this.auth.getHeaders(),
     });
   }
@@ -70,5 +71,16 @@ export class ContractorService {
     return this.http.get<Bid[]>(MY_BIDS, {
       headers: this.auth.getHeaders(),
     });
+  }
+
+  updateStatus(contract: Cluster, val: string): Observable<Cluster> {
+    // localhost:9898/api/contractor/contract/506112?status=UNASSIGNED
+    return this.http.put<Cluster>(
+      UPDATE_STATUS + contract.zipcode + '?status=' + val,
+      {},
+      {
+        headers: this.auth.getHeaders(),
+      }
+    );
   }
 }

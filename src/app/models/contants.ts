@@ -21,3 +21,4 @@ export const APPLY_BID = BASE_URL + 'contractor/bid/apply/';
 export const CHECK_CONTRACT = BASE_URL + 'contractor/bid/';
 export const MY_BIDS = BASE_URL + 'contractor/bids';
 export const MY_CONTRACTS = BASE_URL + 'contractor/mycontracts';
+export const UPDATE_STATUS = BASE_URL + 'contractor/contract/';
