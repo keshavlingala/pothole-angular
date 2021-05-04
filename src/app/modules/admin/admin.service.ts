@@ -2,17 +2,42 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import {
+  ALL_BIDS,
+  ALL_CONTRACTS,
+  APPROVE_BID,
   APPROVE_CONTRACTOR,
   CONTRACTORS_APPLICATIONS,
+  GET_USER_INFO,
 } from '../../models/contants';
-import { Observable, zip } from 'rxjs';
-import { User } from '../../models/models';
+import { Observable, of, zip } from 'rxjs';
+import { Bid, Cluster, User } from '../../models/models';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
-  constructor(private auth: AuthService, private http: HttpClient) {}
+  $clusters: Observable<Cluster[]>;
+
+  constructor(private auth: AuthService, private http: HttpClient) {
+    this.$clusters = this.http.get<Cluster[]>(ALL_CONTRACTS, {
+      headers: this.auth.getHeaders(),
+    });
+  }
+
+  getClusterFromId(clusterId: string): Observable<Cluster | undefined> {
+    return this.$clusters.pipe(
+      map((clusters) => {
+        return clusters.find((cluster) => cluster.zipcode === clusterId);
+      })
+    );
+  }
+
+  getContractorFromId(id: string): Observable<User> {
+    return this.http.get<User>(GET_USER_INFO + id, {
+      headers: this.auth.getHeaders(),
+    });
+  }
 
   getContractorApplications(): Observable<User[]> {
     return this.http.get<User[]>(CONTRACTORS_APPLICATIONS, {
@@ -31,6 +56,25 @@ export class AdminService {
       ),
       (...res: User[]) => {
         return res;
+      }
+    );
+  }
+
+  getAllBids(): Observable<Bid[]> {
+    return this.http.get<Bid[]>(ALL_BIDS, {
+      headers: this.auth.getHeaders(),
+    });
+  }
+
+  approveBid(bidId: string | undefined): Observable<Bid | null> {
+    if (!bidId) {
+      return of(null);
+    }
+    return this.http.post<Bid>(
+      APPROVE_BID + bidId,
+      {},
+      {
+        headers: this.auth.getHeaders(),
       }
     );
   }

@@ -1,1 +1,31 @@
-<p>bids works!</p>
+<div class="container mt-2">
+  <mat-accordion *ngIf="bidsByCluster|async as obj">
+    <mat-expansion-panel (closed)="newExpansion()" *ngFor="let key of getKeys(obj)" class="mt-2">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{key}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{obj[key].length}} Bid Applications
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="d-flex flex-column">
+        <mat-radio-group class="w-100" [(ngModel)]="selectedBid">
+          <mat-radio-button class="w-100 d-block" [value]="bid" *ngFor="let bid of obj[key]">
+            <div class="list-item">
+              <div class="d-flex flex-column justify-content-center">
+                <span>Description: {{bid.description}}</span>
+                <span>Contractor: <span (click)="showContractorDetails(bid.contractorId)"
+                  style="text-decoration:underline;color: cornflowerblue">{{bid.contractorId}}</span></span>
+              </div>
+              <span>₹{{bid.bidAmount}}</span>
+            </div>
+          </mat-radio-button>
+        </mat-radio-group>
+        <button [disabled]="selectedBid==undefined" (click)="approveContract()" class="mt-4" mat-raised-button
+                color="primary">Approve Contract
+        </button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

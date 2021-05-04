@@ -1,0 +1,14 @@
+.list-item {
+  padding: 10px;
+  width: 100%;
+  //border: 1px dotted black;
+  margin-top: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+::ng-deep.mat-radio-label-content {
+  width: 100%;
+}

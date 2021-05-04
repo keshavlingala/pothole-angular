@@ -6,7 +6,10 @@ import { MaterialModule } from '../../material/material.module';
 import { ContractorApplicationsComponent } from './contractor-applications/contractor-applications.component';
 import { HomeComponent } from './home/home.component';
 import { AdminService } from './admin.service';
-import { BidsComponent } from './bids/bids.component';
+import {
+  BidsComponent,
+  ContractorProfileComponent,
+} from './bids/bids.component';
 
 const routes: Routes = [
   {
@@ -35,6 +38,7 @@ const routes: Routes = [
     ContractorApplicationsComponent,
     HomeComponent,
     BidsComponent,
+    ContractorProfileComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes), MaterialModule],
   providers: [AdminService],

@@ -1,6 +1,6 @@
-<div class="d-flex container" *ngIf="($bids | async)?.length==0 else noNew">
+<div class="d-flex container" *ngIf="($bids | async)?.length!==0 else noNew">
   <mat-list class="w-100">
-    <mat-list-item  routerLink="../contracts/{{bid.clusterId}}" *ngFor="let bid of $bids | async">
+    <mat-list-item  *ngFor="let bid of $bids | async">
       <mat-icon mat-list-icon>sell</mat-icon>
       <div matLine>Area ZipCode: {{bid.clusterId}}</div>
       <div matLine>Amount: ₹ {{bid.bidAmount}}</div>

@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { ContractorService } from './contractor.service';
 import { ContractDetailComponent } from './contracts/contract-detail/contract-detail.component';
 import { MybidsComponent } from './mybids/mybids.component';
+import { MyContractsComponent } from './my-contracts/my-contracts.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'my',
+        component: MyContractsComponent,
+      },
     ],
   },
 ];
@@ -43,6 +48,7 @@ const routes: Routes = [
     HomeComponent,
     ContractDetailComponent,
     MybidsComponent,
+    MyContractsComponent,
   ],
   imports: [CommonModule, MaterialModule, RouterModule.forChild(routes)],
   providers: [ContractorService],

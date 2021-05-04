@@ -22,6 +22,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatRadioButton, MatRadioModule } from '@angular/material/radio';
 
 const modules = [
   [
@@ -49,6 +50,7 @@ const modules = [
     MatDialogModule,
     ClipboardModule,
     MatTooltipModule,
+    MatRadioModule,
   ],
 ];
 

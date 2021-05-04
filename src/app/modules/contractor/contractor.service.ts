@@ -6,7 +6,8 @@ import { Bid, Cluster } from '../../models/models';
 import {
   APPLY_BID,
   CHECK_CONTRACT,
-  My_BIDS,
+  MY_BIDS,
+  MY_CONTRACTS,
   OPEN_CONTRACTS,
 } from '../../models/contants';
 import { map } from 'rxjs/operators';
@@ -38,6 +39,12 @@ export class ContractorService {
     );
   }
 
+  getMyContracts(): Observable<Cluster> {
+    return this.http.get<Cluster>(MY_CONTRACTS, {
+      headers: this.auth.getHeaders(),
+    });
+  }
+
   postBid(
     bidAmount: string,
     description: string,
@@ -60,7 +67,7 @@ export class ContractorService {
   }
 
   getMyBids(): Observable<Bid[]> {
-    return this.http.get<Bid[]>(My_BIDS, {
+    return this.http.get<Bid[]>(MY_BIDS, {
       headers: this.auth.getHeaders(),
     });
   }
