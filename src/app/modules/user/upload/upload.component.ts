@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { PotholeRecord } from '../../../models/models';
@@ -10,8 +10,22 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./upload.component.scss'],
 })
 export class UploadComponent implements OnInit {
+  WIDTH = 320;
+  HEIGHT = 240;
+
+  @ViewChild("video")
+  public video: ElementRef | undefined;
+
+  @ViewChild("canvas")
+  public canvas: ElementRef | undefined;
+
+  captures: string ="";
+  isCaptured: boolean = false;
+  image : any;
+  error: any;
   form: FormGroup;
   file: File | null = null;
+  clickOrUpload: boolean = true;
 
   constructor(
     private fb: FormBuilder,
@@ -25,12 +39,68 @@ export class UploadComponent implements OnInit {
       ],
       lat: ['', Validators.required],
       lng: ['', Validators.required],
-      file: [null, [Validators.required]],
+      file: [null],
       description: ['', Validators.required],
     });
+
+
+
   }
 
+  async ngAfterViewInit() {
+    await this.setupDevices();
+  }
+
+  async setupDevices() {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true
+        });
+        if (stream) {
+          if(this.video){
+            this.video.nativeElement.srcObject = stream;
+            this.video.nativeElement.play();
+          }
+          this.error = null;
+        } else {
+          this.error = "You have no output video device";
+        }
+      } catch (e) {
+        this.error = e;
+      }
+    }
+  }
+
+  capture() {
+    this.drawImageToCanvas(this.video?.nativeElement);
+    this.captures = this.canvas?.nativeElement.toDataURL("image/png");
+    this.isCaptured = true;
+    this.file = this.dataURLtoFile(this.captures, 'filename.png');
+  }
+
+  removeCurrent() {
+    this.isCaptured = false;
+  }
+
+  drawImageToCanvas(image: any) {
+    this.canvas?.nativeElement
+      .getContext("2d")
+      .drawImage(image, 0, 0, this.WIDTH, this.HEIGHT);
+  }
+
+  dataURLtoFile(dataurl:any, filename:string) {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, {type:mime});
+    }
+
+
   submit(): void {
+    console.log(this.file);
     const { lat, lng, zipcode, description } = this.form.value;
     const pothole: PotholeRecord = {
       lat,
@@ -51,6 +121,11 @@ export class UploadComponent implements OnInit {
         console.log('Errror', error);
       }
     );
+  }
+
+  toggle(value:boolean)
+  {
+    this.clickOrUpload = value;
   }
 
   ngOnInit(): void {}
