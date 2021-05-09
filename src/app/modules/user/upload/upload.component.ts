@@ -126,6 +126,11 @@ export class UploadComponent implements OnInit {
   toggle(value:boolean)
   {
     this.clickOrUpload = value;
+    if(value === true)
+    {
+      this.setupDevices();
+      this.isCaptured = false;
+    }
   }
 
   ngOnInit(): void {}
