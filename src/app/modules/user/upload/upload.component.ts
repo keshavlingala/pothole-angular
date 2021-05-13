@@ -1,4 +1,10 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { PotholeRecord } from '../../../models/models';
@@ -9,23 +15,23 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss'],
 })
-export class UploadComponent implements OnInit {
+export class UploadComponent implements OnInit, AfterViewInit {
   WIDTH = 320;
   HEIGHT = 240;
 
-  @ViewChild("video")
+  @ViewChild('video')
   public video: ElementRef | undefined;
 
-  @ViewChild("canvas")
+  @ViewChild('canvas')
   public canvas: ElementRef | undefined;
 
-  captures: string ="";
-  isCaptured: boolean = false;
-  image : any;
+  captures = '';
+  isCaptured = false;
+  image: any;
   error: any;
   form: FormGroup;
   file: File | null = null;
-  clickOrUpload: boolean = true;
+  clickOrUpload = true;
 
   constructor(
     private fb: FormBuilder,
@@ -42,29 +48,26 @@ export class UploadComponent implements OnInit {
       file: [null],
       description: ['', Validators.required],
     });
-
-
-
   }
 
-  async ngAfterViewInit() {
+  async ngAfterViewInit(): Promise<void> {
     await this.setupDevices();
   }
 
-  async setupDevices() {
+  async setupDevices(): Promise<void> {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: true
+          video: true,
         });
         if (stream) {
-          if(this.video){
+          if (this.video) {
             this.video.nativeElement.srcObject = stream;
             this.video.nativeElement.play();
           }
           this.error = null;
         } else {
-          this.error = "You have no output video device";
+          this.error = 'You have no output video device';
         }
       } catch (e) {
         this.error = e;
@@ -72,32 +75,34 @@ export class UploadComponent implements OnInit {
     }
   }
 
-  capture() {
+  capture(): void {
     this.drawImageToCanvas(this.video?.nativeElement);
-    this.captures = this.canvas?.nativeElement.toDataURL("image/png");
+    this.captures = this.canvas?.nativeElement.toDataURL('image/png');
     this.isCaptured = true;
     this.file = this.dataURLtoFile(this.captures, 'filename.png');
   }
 
-  removeCurrent() {
+  removeCurrent(): void {
     this.isCaptured = false;
   }
 
-  drawImageToCanvas(image: any) {
+  drawImageToCanvas(image: any): void {
     this.canvas?.nativeElement
-      .getContext("2d")
+      .getContext('2d')
       .drawImage(image, 0, 0, this.WIDTH, this.HEIGHT);
   }
 
-  dataURLtoFile(dataurl:any, filename:string) {
-    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-        while(n--){
-            u8arr[n] = bstr.charCodeAt(n);
-        }
-        return new File([u8arr], filename, {type:mime});
+  dataURLtoFile(dataurl: any, filename: string): File {
+    const arr = dataurl.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
     }
-
+    return new File([u8arr], filename, { type: mime });
+  }
 
   submit(): void {
     console.log(this.file);
@@ -123,11 +128,9 @@ export class UploadComponent implements OnInit {
     );
   }
 
-  toggle(value:boolean)
-  {
+  toggle(value: boolean): void {
     this.clickOrUpload = value;
-    if(value === true)
-    {
+    if (value === true) {
       this.setupDevices();
       this.isCaptured = false;
     }
