@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import {
   ALL_BIDS,
   ALL_CONTRACTS,
+  ALL_USERS,
   APPROVE_BID,
   APPROVE_CONTRACTOR,
   CONTRACTORS_APPLICATIONS,
@@ -41,6 +42,12 @@ export class AdminService {
 
   getContractorApplications(): Observable<User[]> {
     return this.http.get<User[]>(CONTRACTORS_APPLICATIONS, {
+      headers: this.auth.getHeaders(),
+    });
+  }
+
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(ALL_USERS, {
       headers: this.auth.getHeaders(),
     });
   }

@@ -1,4 +1,6 @@
-const BASE_URL = 'http://localhost:9898/api/';
+import { environment } from '../../environments/environment.prod';
+
+const BASE_URL = environment.apiUrl + 'api/';
 export const LOGIN_URL = BASE_URL + 'p/login';
 export const REGISTER_URL = BASE_URL + 'p/register';
 export const WHO_AM_I = BASE_URL + 'user/whoami';
@@ -14,6 +16,7 @@ export const ALL_BIDS = BASE_URL + 'admin/bids';
 export const ALL_CONTRACTS = BASE_URL + 'admin/contracts';
 export const GET_USER_INFO = BASE_URL + 'admin/user/';
 export const APPROVE_BID = BASE_URL + 'admin/bid/approve/';
+export const ALL_USERS = BASE_URL + 'admin/users';
 
 // Contractor
 export const OPEN_CONTRACTS = BASE_URL + 'contractor/clusters';

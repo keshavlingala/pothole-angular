@@ -3,6 +3,7 @@ import { User } from '../../../models/models';
 import { AdminService } from '../admin.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSelectionList } from '@angular/material/list';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-contractor-applications',
@@ -10,13 +11,11 @@ import { MatSelectionList } from '@angular/material/list';
   styleUrls: ['./contractor-applications.component.scss'],
 })
 export class ContractorApplicationsComponent implements OnInit {
-  contractors: User[] = [];
+  contractors: Observable<User[]> = of([]);
   @ViewChild('list') items: MatSelectionList | undefined;
 
   constructor(private adminService: AdminService, private snack: MatSnackBar) {
-    this.adminService.getContractorApplications().subscribe((res) => {
-      this.contractors = res;
-    });
+    this.contractors = this.adminService.getContractorApplications();
   }
 
   ngOnInit(): void {}
@@ -32,6 +31,8 @@ export class ContractorApplicationsComponent implements OnInit {
     if (users) {
       this.adminService.approveContractors(users).subscribe((res) => {
         console.log(res);
+        this.contractors = this.adminService.getContractorApplications();
+        this.snack.open('Selected Users are Approved to be contractors');
       });
     }
   }
