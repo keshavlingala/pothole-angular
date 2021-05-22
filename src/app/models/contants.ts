@@ -1,4 +1,4 @@
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 const BASE_URL = environment.apiUrl + 'api/';
 export const LOGIN_URL = BASE_URL + 'p/login';
