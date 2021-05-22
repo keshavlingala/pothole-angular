@@ -1,0 +1,33 @@
+<div class="container mt-2">
+  <table mat-table [dataSource]="users" class="mat-elevation-z8 w-100">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef> Username</th>
+      <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email</th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <!-- Roles Column -->
+    <ng-container matColumnDef="authorities">
+      <th mat-header-cell *matHeaderCellDef> Roles</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-chip-list>
+          <mat-chip class="pointer" (click)="clickedRow(element)" [selected]="role.authority!=='USER'" [color]="getColor(role.authority)"
+                    *ngFor="let role of element.authorities">
+            {{role.authority}}
+          </mat-chip>
+        </mat-chip-list>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr  mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
