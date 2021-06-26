@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { User } from '../../../models/models';
-import { AdminService } from '../admin.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSelectionList } from '@angular/material/list';
-import { Observable, of } from 'rxjs';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {User} from '../../../models/models';
+import {AdminService} from '../admin.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatSelectionList} from '@angular/material/list';
+import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-contractor-applications',
@@ -18,7 +18,8 @@ export class ContractorApplicationsComponent implements OnInit {
     this.contractors = this.adminService.getContractorApplications();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   copyLicence(): void {
     this.snack.open('License ID Copied to Clipboard', 'Dismiss', {
@@ -32,7 +33,9 @@ export class ContractorApplicationsComponent implements OnInit {
       this.adminService.approveContractors(users).subscribe((res) => {
         console.log(res);
         this.contractors = this.adminService.getContractorApplications();
-        this.snack.open('Selected Users are Approved to be contractors');
+        this.snack.open('Selected Users are Approved to be contractors', 'Dismiss', {
+          duration: 1000
+        });
       });
     }
   }

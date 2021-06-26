@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ContractorService } from '../contractor.service';
-import { Cluster } from '../../../models/models';
+import {Component, OnInit} from '@angular/core';
+import {ContractorService} from '../contractor.service';
+import {Cluster} from '../../../models/models';
 
 @Component({
   selector: 'app-contracts',
@@ -17,9 +17,14 @@ export class ContractsComponent implements OnInit {
       .subscribe((clusters) => (this.clusters = clusters));
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   selectCluster(cluster: Cluster): void {
     this.selectedCluster = cluster;
+  }
+
+  getSorted(clusters: Cluster[]): Cluster[] {
+    return clusters.sort((a, b) => -a.records.length + b.records.length)
   }
 }

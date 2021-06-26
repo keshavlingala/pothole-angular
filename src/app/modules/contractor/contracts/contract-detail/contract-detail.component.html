@@ -8,7 +8,7 @@
         <img [src]="record.img" alt="Pothole Image">
         <div class="d-flex flex-column align-items-center justify-content-center">
           <h3 class="mt-1">{{record.description}}</h3>
-          <button (click)="copyCoordinates()" [cdkCopyToClipboard]="record.lat+','+record.lng"
+          <button  (click)="copyCoordinates(record)" [cdkCopyToClipboard]="record.lat+','+record.lng"
                   matTooltipPosition="above"
                   matTooltip="Copy Coordinates" mat-stroked-button>
             <mat-icon>location_on</mat-icon>

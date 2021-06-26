@@ -11,6 +11,7 @@ import {
   ContractorProfileComponent,
 } from './bids/bids.component';
 import { UsersComponent } from './users/users.component';
+import { ApprovedContractsComponent } from './approved-contracts/approved-contracts.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
         path: 'users',
         component: UsersComponent,
       },
+      {
+        path: 'approved',
+        component: ApprovedContractsComponent,
+      },
     ],
   },
 ];
@@ -45,6 +50,7 @@ const routes: Routes = [
     BidsComponent,
     ContractorProfileComponent,
     UsersComponent,
+    ApprovedContractsComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes), MaterialModule],
   providers: [AdminService],

@@ -1,0 +1,16 @@
+<div *ngIf="contracts | async as cons ">
+  <mat-list>
+    <mat-list-item *ngFor="let con of getSorted(cons)">
+      <mat-icon mat-list-icon>sell</mat-icon>
+      <div matLine>Status: {{con.status}}</div>
+      <div matLine>Records Size: {{con.records.length}}</div>
+      <mat-chip selected color="{{getColor(con.status)}}">{{con.status}}</mat-chip>
+    </mat-list-item>
+<!--    <mat-list-item  *ngFor="let con of cons">-->
+<!--      <mat-icon mat-list-icon>sell</mat-icon>-->
+<!--      <div matLine>Area ZipCode: {{bid.clusterId}}</div>-->
+<!--      <div matLine>Amount: ₹ {{bid.bidAmount}}</div>-->
+<!--      <mat-chip selected color="{{getColor(bid.status)}}">{{bid.status}}</mat-chip>-->
+<!--    </mat-list-item>-->
+  </mat-list>
+</div>

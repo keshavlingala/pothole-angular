@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Bid, Cluster } from '../../../../models/models';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { ContractorService } from '../../contractor.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Bid, Cluster, PotholeRecord} from '../../../../models/models';
+import {ActivatedRoute} from '@angular/router';
+import {Observable, of} from 'rxjs';
+import {ContractorService} from '../../contractor.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-contract-detail',
@@ -43,14 +43,15 @@ export class ContractDetailComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  copyCoordinates(): void {
+  copyCoordinates(record: PotholeRecord): void {
     this.snack.open('Coordinates Copied to Clipboard', 'Dismiss', {
       duration: 1000,
     });
+    window.open(`https://www.google.com/maps/place/${record.lat},${record.lng}/,17z`, '_blank');
   }
 
   submitBid(zipcode: string): void {
-    const { bidAmount, description } = this.bidForm.value;
+    const {bidAmount, description} = this.bidForm.value;
     this.contractorService
       .postBid(bidAmount, description, zipcode)
       .subscribe((bid) => {
