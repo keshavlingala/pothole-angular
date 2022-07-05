@@ -1,8 +1,10 @@
-.item{
+.item {
   display: flex;
   flex-direction: row;
   padding: 20px;
-  border:1px solid blue;
+  border: 1px solid #607d8a;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
+  border-radius: 10px;
 }

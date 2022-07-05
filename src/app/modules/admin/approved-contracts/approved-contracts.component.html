@@ -1,6 +1,6 @@
 <div *ngIf="contracts | async as cons ">
   <mat-list>
-    <mat-list-item *ngFor="let con of getSorted(cons)">
+    <mat-list-item (click)="showContractorDetails(con.contractorId)" *ngFor="let con of getSorted(cons)">
       <mat-icon mat-list-icon>sell</mat-icon>
       <div matLine>Status: {{con.status}}</div>
       <div matLine>Records Size: {{con.records.length}}</div>

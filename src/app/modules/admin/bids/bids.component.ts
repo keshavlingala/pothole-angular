@@ -1,14 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { AdminService } from '../admin.service';
-import { Bid, User } from '../../../models/models';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogRef,
-} from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {Component, Inject, OnInit} from '@angular/core';
+import {AdminService} from '../admin.service';
+import {Bid, User} from '../../../models/models';
+import {Observable, of} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef,} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-bids',
@@ -40,7 +36,8 @@ export class BidsComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   getKeys(obj: { [p: string]: Bid[] }): string[] {
     return Object.keys(obj);
@@ -85,15 +82,15 @@ export class BidsComponent implements OnInit {
 
 @Component({
   template: ` <h1 mat-dialog-title>Contractor Details</h1>
-    <div *ngIf="$contractor | async as contractor" mat-dialog-content>
-      Username: {{ contractor.username }} <br />
-      Email: {{ contractor.email }} <br />
-      Licence: {{ contractor.licence }} <br />
-      ID: {{ contractor.userId }}
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Close</button>
-    </div>`,
+  <div *ngIf="$contractor | async as contractor" mat-dialog-content>
+    Username: {{ contractor.username }} <br/>
+    Email: {{ contractor.email }} <br/>
+    Licence: {{ contractor.licence }} <br/>
+    ID: {{ contractor.userId }}
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Close</button>
+  </div>`,
 })
 export class ContractorProfileComponent {
   $contractor: Observable<User>;
